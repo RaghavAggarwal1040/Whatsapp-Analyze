@@ -155,6 +155,7 @@ if uploaded_file is not None:
 
         with col2:
             fig,ax=plt.subplots()
+            # ax.bar(emoji_df[0].head(),emoji_df[1].head())
             ax.pie(emoji_df[1].head(),labels=emoji_df[0].head(),autopct="%0.2f")
             st.pyplot(fig)
 

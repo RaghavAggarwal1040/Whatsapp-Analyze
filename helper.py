@@ -109,16 +109,12 @@ def most_common_words(selected_user,df):
 
 def emoji_helper(selected_user,df):
 
-    e = open('emoji.txt', 'r')
-    emois = e.read()
-    ej = emoji.emojize(emois)
-
     if selected_user != 'Overall':
         df = df[df['user'] == selected_user]
 
     emojis=[]
     for message in df['message']:
-        emojis.extend([c for c in message if c in ej.split()])
+        emojis.extend([c for c in message if c in emoji.EMOJI_DATA])
 
     emoji_df=pd.DataFrame(Counter(emojis).most_common(len(Counter(emojis))))
 
