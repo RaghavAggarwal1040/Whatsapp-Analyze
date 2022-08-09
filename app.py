@@ -175,5 +175,21 @@ if uploaded_file is not None:
             ax.bar(sentiment_df[0].head(),sentiment_df[1].head())
             st.pyplot(fig)
 
+        #alphabet
+
+        st.title("Alphabet Analyzer")
+        alphabet_df=helper.alphabet_analyze(selected_user,df)
+
+        col1,col2=st.columns(2)
+
+        with col1:
+            fig,ax=plt.subplots()
+            ax.bar(alphabet_df[0],alphabet_df[1])
+            st.pyplot(fig)
+        with col2:
+            st.dataframe(alphabet_df)
+
+
+
 
 

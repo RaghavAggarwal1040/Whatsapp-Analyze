@@ -189,3 +189,32 @@ def sentiment_analyze(selected_user,df):
     sentiment_df=pd.DataFrame(Counter(sentiment).most_common(len(Counter(sentiment))))
 
     return sentiment_df
+
+def alphabet_analyze(selected_user,df):
+    f = open('stop_hinglish.txt', 'r')
+    stop_words = f.read()
+
+    if selected_user != 'Overall':
+        df = df[df['user'] == selected_user]
+
+    temp = df[df['user'] != 'group_notification']
+    temp = temp[temp['message'] != '<Media omitted>\n']
+
+    words = []
+
+    for message in temp['message']:
+        for word in message.lower().split():
+            if word not in stop_words:
+                words.append(word)
+
+    map = []
+    l2 = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+          "w", "x", "y", "z"]
+    for j in words:
+        for i in j:
+            if i in l2:
+                map.append(i)
+
+
+    alphabet_df = pd.DataFrame(Counter(map).most_common(len(map)))
+    return alphabet_df
